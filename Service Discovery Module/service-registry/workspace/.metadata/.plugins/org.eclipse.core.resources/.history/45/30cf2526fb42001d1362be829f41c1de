@@ -1,0 +1,8 @@
+server.port=8761
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+management.endpoint.info.enabled=false
+management.info.build.enabled=true
+management.info.git.enabled=true
+management.info.env.enabled=true
+management.info.defaults.enabled=false

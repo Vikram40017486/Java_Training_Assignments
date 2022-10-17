@@ -1,0 +1,33 @@
+package com.ltts.anotherapp;
+
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Flux;
+
+@RestController
+
+public class GetController {
+
+	 @Bean
+	 @LoadBalanced
+	 public WebClient.Builder loadBalancedWebClientBuilder() {
+	     return WebClient.builder();
+	 }
+	@RequestMapping ("")
+	public String Page1()
+	{
+		return "Welcome to fetch Page";
+	}
+	
+    @RequestMapping("/playerlist")
+    public Flux<String> getAllPlayer()
+    {
+         WebClient st = WebClient.create("PlayerRegistration");
+         Flux<String> f1 = st.get().uri("http://PLAYREGISTRATION").retrieve().bodyToFlux(String.class);
+		return f1;
+    }
+}
